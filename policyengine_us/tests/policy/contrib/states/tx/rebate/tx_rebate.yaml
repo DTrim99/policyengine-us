@@ -4,7 +4,7 @@
 
 - name: Case 1, Texas household receives the rebate.
   period: 2027
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -24,7 +24,7 @@
 
 - name: Case 2, non-Texas household gets no rebate.
   period: 2027
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -44,7 +44,7 @@
 
 - name: Case 3, rebate flows into household benefits and net income.
   period: 2027
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -70,7 +70,7 @@
 
 - name: Case 4, rebate is included in spm_unit_benefits.
   period: 2027
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -95,7 +95,7 @@
 
 - name: Case 5, zero-income Texas household still receives the rebate.
   period: 2027
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -115,7 +115,7 @@
 
 - name: Case 6, high-income Texas household still receives the rebate.
   period: 2027
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -136,7 +136,7 @@
 
 - name: Case 7, before the 2027 effective date the rebate is zero.
   period: 2026
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -158,7 +158,7 @@
 
 - name: Case 8, after the one-time 2027 payment the rebate does not recur.
   period: 2028
-  absolute_error_margin: 1
+  absolute_error_margin: 0.01
   reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
   input:
     gov.contrib.states.tx.rebate.in_effect: true
@@ -181,3 +181,97 @@
     # not recur -- neither directly nor through the spm_unit_benefits path.
     tx_rebate: 0
     spm_unit_benefits: 0
+
+- name: Case 9, a four-person Texas household receives a single $1,500 rebate.
+  period: 2027
+  absolute_error_margin: 0.01
+  reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
+  input:
+    gov.contrib.states.tx.rebate.in_effect: true
+    people:
+      person1:
+        age: 40
+        # High income so no other SPM benefits fire; only the rebate remains.
+        employment_income: 500_000
+      person2:
+        age: 38
+      person3:
+        age: 10
+      person4:
+        age: 8
+    tax_units:
+      tax_unit:
+        members: [person1, person2, person3, person4]
+    spm_units:
+      spm_unit:
+        members: [person1, person2, person3, person4]
+    households:
+      household:
+        members: [person1, person2, person3, person4]
+        state_code: TX
+  output:
+    # $1,500 per household regardless of size (not per person).
+    tx_rebate: 1_500
+    spm_unit_benefits: 1_500
+
+- name: Case 10, a Texas household split into two SPM units apportions the rebate.
+  period: 2027
+  absolute_error_margin: 0.01
+  reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
+  input:
+    gov.contrib.states.tx.rebate.in_effect: true
+    people:
+      person1:
+        age: 40
+        employment_income: 500_000
+      person2:
+        age: 38
+        employment_income: 500_000
+    tax_units:
+      tax_unit1:
+        members: [person1]
+      tax_unit2:
+        members: [person2]
+    spm_units:
+      spm_unit1:
+        members: [person1]
+      spm_unit2:
+        members: [person2]
+    households:
+      household:
+        members: [person1, person2]
+        state_code: TX
+  output:
+    # The household-level $1,500 is apportioned across the two equal-size SPM
+    # units (750 + 750), preserving the total.
+    tx_rebate: 1_500
+    spm_unit_benefits: [750, 750]
+
+- name: Case 11, the rebate stacks on other benefits in spm_unit_benefits.
+  period: 2027
+  absolute_error_margin: 0.01
+  reforms: policyengine_us.reforms.states.tx.rebate.tx_rebate.tx_rebate
+  input:
+    gov.contrib.states.tx.rebate.in_effect: true
+    people:
+      person1:
+        age: 40
+        # High income zeroes computed benefits; snap is set directly below so
+        # the assertion is deterministic and proves the rebate does not displace
+        # other entries in the copied BENEFITS list.
+        employment_income: 500_000
+    tax_units:
+      tax_unit:
+        members: [person1]
+    spm_units:
+      spm_unit:
+        members: [person1]
+        snap: 6_000
+    households:
+      household:
+        members: [person1]
+        state_code: TX
+  output:
+    tx_rebate: 1_500
+    # snap (6,000) + tx_rebate (1,500) = 7,500.
+    spm_unit_benefits: 7_500

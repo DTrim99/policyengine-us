@@ -3,13 +3,24 @@
 Proposal: Gina Hinojosa's "Money in Your Pocket" economic agenda proposes a
 one-time $1,500 rebate check to Texas families, funded by an ~$17 billion draw
 on the state's Economic Stabilization Fund.
-Source: https://ginafortexas.com/2026/07/recap-gina-hinojosa-launches-money-in-your-pocket-economic-agenda-across-houston-san-antonio-and-laredo/
+Source: Gina Hinojosa for Texas campaign press release (July 13, 2026),
+https://ginafortexas.com/2026/07/recap-gina-hinojosa-launches-money-in-your-pocket-economic-agenda-across-houston-san-antonio-and-laredo/
 
-Modeling assumptions: the proposal does not specify the eligibility unit or an
-income limit. PolicyEngine models one check per household with no income limit --
-the reading consistent with the campaign's stated ~$17 billion Economic
-Stabilization Fund draw. The campaign's "families" are therefore operationalized
-as households. The rebate is paid once (2027) and reverts to $0 from 2028.
+Modeling assumptions (the proposal specifies neither the eligibility unit, an
+income limit, nor a payment year -- the items below are PolicyEngine inferences,
+not stated facts):
+- One check per household, no income limit. The campaign's "families" are
+  operationalized as households: ~$17 billion / $1,500 ~= 11.3 million recipients,
+  consistent with Texas's ~10.7-11.8 million households (Census ACS 2019-2023) and
+  far above its family count, so the households reading fits the stated ESF draw.
+- Payment year 2027 is inferred from the campaign's "day one" framing and the
+  January 2027 gubernatorial inauguration; the source states no year.
+- The rebate is modeled as one-time: paid in 2027, reverting to $0 from 2028.
+  This one-time-ness lives in three coupled places that must be changed together
+  if the payment year moves: the `amount` parameter values (0 outside 2027), the
+  `modify_parameters` 2027-only window on `household_state_benefits`, and the
+  always-on `spm_unit_benefits` override (safe only because `amount` is 0 outside
+  2027).
 """
 
 from policyengine_us.model_api import *
@@ -50,6 +61,14 @@ def create_tx_rebate() -> Reform:
         unit = USD
 
         def formula(spm_unit, period, parameters):
+            # NOTE: keep this list in sync with the baseline spm_unit_benefits
+            # (variables/household/income/spm_unit/spm_unit_benefits.py). It is a
+            # verbatim copy of that list plus "tx_rebate"; because a structural
+            # reform must replace the whole variable, this is a frozen snapshot.
+            # If the baseline list later gains a program, any simulation with
+            # this reform active would silently drop it until this copy is
+            # updated. (Same accepted-but-brittle idiom as the Tlaib/BOOST/EDAA
+            # reforms.)
             BENEFITS = [
                 "social_security",
                 "ssi",
@@ -155,4 +174,8 @@ def create_tx_rebate_reform(parameters, period, bypass: bool = False):
         return None
 
 
+# Module-level bypass instance used by the YAML tests' `reforms:` key. It skips
+# the 5-year lookahead gate, so the `in_effect` parameter does not turn it off in
+# those tests; `in_effect` only gates the production path (the non-bypass branch
+# of create_tx_rebate_reform, invoked via create_structural_reforms_from_parameters).
 tx_rebate = create_tx_rebate_reform(None, None, bypass=True)
