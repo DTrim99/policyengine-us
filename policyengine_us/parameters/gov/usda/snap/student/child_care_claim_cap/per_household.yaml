@@ -1,4 +1,4 @@
-description: The Department of Agriculture lets only one adult per household claim the Supplemental Nutrition Assistance Program student exemption for caring for a dependent child under age six, however many such children live there, in these states.
+description: The Department of Agriculture limits the Supplemental Nutrition Assistance Program student exemption for caring for a dependent child under age six to one adult per household in these states.
 metadata:
   unit: bool
   period: year
@@ -9,17 +9,13 @@ metadata:
   reference:
     - title: Missouri DSS SNAP Manual § 1135.025.00 - Students
       href: https://dssmanuals.mo.gov/food-stamps/1135-000-00/1135-025-00/
-    - title: Illinois IDHS WAG 03-04-03-b - Eligible Students of Higher Education
-      href: https://www.dhs.state.il.us/page.aspx?item=13276
     - title: 7 CFR 273.5(b)(8) - Students, care of a dependent household member under the age of 6
       href: https://www.law.cornell.edu/cfr/text/7/273.5
-# Federal rule 7 CFR 273.5(b)(8) is silent on shared care. Missouri
-# ("only one adult in the household may claim this responsibility") and
-# Illinois ("only one adult may claim this exemption") cap the claim per
-# household, so a second child under six does not free a second claim.
-# Most other checked states cap it per child (per_child.yaml). The
-# manuals give no effective date, so values start with the sibling
-# student parameters.
+# Federal rule 7 CFR 273.5(b)(8) is silent on shared care. Only Missouri's
+# cap is modeled; false entries keep the uncapped federal reading and do
+# not assert that other states allow unlimited claims. Missouri's cap is
+# modeled from 2025: the manual gives no effective date, so the start is a
+# modeling choice, not a finding that the policy differed before 2025.
 AK:
   2005-01-01: false
 AL:
@@ -49,7 +45,7 @@ IA:
 ID:
   2005-01-01: false
 IL:
-  2005-01-01: true
+  2005-01-01: false
 IN:
   2005-01-01: false
 KS:
@@ -69,7 +65,11 @@ MI:
 MN:
   2005-01-01: false
 MO:
-  2005-01-01: true
+  # § 1135.025.00: "only one adult in the household may claim this
+  # responsibility", read as one claim per household however many children
+  # under six live there; the manual gives no two-child example.
+  2005-01-01: false
+  2025-01-01: true
 MS:
   2005-01-01: false
 MT:

@@ -5,12 +5,6 @@ class meets_snap_non_parent_student_exception(Variable):
     value_type = bool
     entity = Person
     label = "Meets a SNAP student exception other than the parent exceptions"
-    documentation = (
-        "Whether a higher education student qualifies for SNAP through an "
-        "exception that does not depend on caring for a child: age, "
-        "disability, placement through an employment and training or work "
-        "incentive program, work hours or work-study, or TANF receipt."
-    )
     definition_period = YEAR
     defined_for = "is_snap_higher_ed_student"
     reference = (
