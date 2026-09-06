@@ -55,6 +55,9 @@
         ssi_countable_resources: 90_000
       person2:
         ssi_countable_resources: 90_000
+    marital_units:
+      marital_unit1:
+        members: [person1, person2]
     households:
       household:
         members: [person1, person2]
@@ -74,6 +77,9 @@
         ssi_countable_resources: 100_000
       person2:
         ssi_countable_resources: 100_000
+    marital_units:
+      marital_unit1:
+        members: [person1, person2]
     households:
       household:
         members: [person1, person2]

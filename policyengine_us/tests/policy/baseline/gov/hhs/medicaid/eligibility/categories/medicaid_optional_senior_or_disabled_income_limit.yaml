@@ -3,8 +3,9 @@
 # 85% (DSS Manual § 0805.015.45; current dollars in MHABD Appendix J).
 # Missouri publishes the standards as monthly dollar amounts, rounding
 # the percentage of the monthly guideline up to the next whole dollar.
-# The guideline is the one-person or couple figure (2025: $15,650 and
-# $21,150), so a tax_unit_fpg override has no effect in Missouri.
+# In every state the guideline is the one-person or couple figure (2025:
+# $15,650 and $21,150), following the applicant's marital unit rather
+# than the tax unit (42 CFR 435.602).
 - name: Missouri blind single person gets the 100% FPL blind standard
   period: 2025
   input:
@@ -54,6 +55,9 @@
       tax_unit:
         members: [person1, person2]
         tax_unit_is_joint: true
+    marital_units:
+      marital_unit1:
+        members: [person1, person2]
     households:
       household:
         members: [person1, person2]
@@ -106,6 +110,9 @@
       tax_unit:
         members: [person1, person2]
         tax_unit_is_joint: true
+    marital_units:
+      marital_unit1:
+        members: [person1, person2]
     households:
       household:
         members: [person1, person2]
@@ -126,6 +133,9 @@
       tax_unit:
         members: [person1, person2]
         tax_unit_is_joint: true
+    marital_units:
+      marital_unit1:
+        members: [person1, person2]
     households:
       household:
         members: [person1, person2]
@@ -143,14 +153,13 @@
     tax_units:
       tax_unit:
         members: [person1]
-        tax_unit_fpg: 20_000
     households:
       household:
         members: [person1]
         state_code: FL
   output:
-    # Florida's ordinary individual percentage, 0.88 x 20,000
-    medicaid_optional_senior_or_disabled_income_limit: [17_600]
+    # Florida's ordinary individual percentage, 0.88 x 15,650
+    medicaid_optional_senior_or_disabled_income_limit: [13_772]
 
 # The standard follows the applicant's marital status, not the tax unit's
 # size: a disabled child in a family of four is tested against the
@@ -234,3 +243,62 @@
         state_code: MO
   output:
     medicaid_optional_senior_or_disabled_income_limit: [13_572, 13_572]
+
+# Outside Missouri the unit is the same: a married couple gets the couple
+# percentage on the two-person guideline whatever their filing status,
+# and a disabled child in a family of four gets the individual standard.
+- name: Florida married couple filing separately gets the couple standard
+  period: 2025
+  input:
+    people:
+      person1:
+        age: 70
+      person2:
+        age: 68
+    tax_units:
+      tax_unit1:
+        members: [person1]
+      tax_unit2:
+        members: [person2]
+    marital_units:
+      marital_unit:
+        members: [person1, person2]
+    households:
+      household:
+        members: [person1, person2]
+        state_code: FL
+  output:
+    # 0.88 x 21,150
+    medicaid_optional_senior_or_disabled_income_limit: [18_612, 18_612]
+
+- name: Florida disabled child in a family of four gets the individual standard
+  period: 2025
+  input:
+    people:
+      person1:
+        age: 10
+        is_ssi_disabled: true
+      person2:
+        age: 40
+      person3:
+        age: 39
+      person4:
+        age: 8
+    tax_units:
+      tax_unit:
+        members: [person1, person2, person3, person4]
+        tax_unit_is_joint: true
+    marital_units:
+      parents:
+        members: [person2, person3]
+      child1:
+        members: [person1]
+      child2:
+        members: [person4]
+    households:
+      household:
+        members: [person1, person2, person3, person4]
+        state_code: FL
+  output:
+    # child: 0.88 x 15,650; parents: 0.88 x 21,150
+    medicaid_optional_senior_or_disabled_income_limit: [13_772, 18_612, 18_612, 13_772]
