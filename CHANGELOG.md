@@ -1,3 +1,10 @@
+## [1.823.0] - 2026-09-07
+
+### Removed
+
+- Remove the inert legacy New York encoding under gov/hhs/ccdf (market rates, county clusters, copay percentages, and their variables), which contributed zero dollars to every household.
+
+
 ## [1.822.5] - 2026-09-04
 
 ### Fixed
