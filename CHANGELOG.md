@@ -1,3 +1,10 @@
+## [1.824.0] - 2026-09-08
+
+### Added
+
+- Added a contrib reform that pays the Oklahoma Child Care/Child Tax Credit as a refundable credit.
+
+
 ## [1.823.1] - 2026-09-08
 
 ### Fixed
