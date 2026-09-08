@@ -41,6 +41,8 @@ class meets_snap_parent_exception(Variable):
         claim_rank = person.get_rank(spm_unit, where(needs_claim, 0, 1), is_parent)
         # States without the cap keep the uncapped federal reading.
         gets_claim = ~caps_per_household | (claim_rank == 0)
+        # Exception numbers follow 7 U.S.C. 2015(e); 7 CFR 273.5(b) orders
+        # them differently (the under-six exception is (b)(8) there).
         # Exception 5; care of children 6-11 without adequate care is not modeled.
         exception_5 = (young_child_count > 0) & gets_claim
         # Exception 8: single parent enrolled full-time, child under 12.

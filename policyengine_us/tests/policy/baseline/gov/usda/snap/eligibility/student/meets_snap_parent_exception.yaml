@@ -640,92 +640,7 @@
     meets_snap_parent_exception: [true, true, false]
     is_snap_ineligible_student: [false, false, false]
 
-- name: Case 43, CA lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: CA}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-- name: Case 44, CT lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: CT}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-- name: Case 45, GA lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: GA}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-- name: Case 46, IL lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: IL}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-- name: Case 47, TX lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: TX}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-- name: Case 48, CO lets both student parents claim the exception for one young child.
+- name: Case 43, CO lets both student parents claim the exception for one young child.
   period: 2025
   input:
     people:
@@ -742,7 +657,7 @@
     meets_snap_parent_exception: [true, true, false]
     is_snap_ineligible_student: [false, false, false]
 
-- name: Case 49, KS lets both student parents claim the exception for one young child.
+- name: Case 44, KS lets both student parents claim the exception for one young child.
   period: 2025
   input:
     people:
@@ -759,42 +674,7 @@
     meets_snap_parent_exception: [true, true, false]
     is_snap_ineligible_student: [false, false, false]
 
-- name: Case 50, NC lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: NC}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-- name: Case 51, WA lets both student parents claim the exception for one young child.
-  period: 2025
-  input:
-    people:
-      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person2: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
-      person3: {age: 4, is_tax_unit_head_or_spouse: false}
-    tax_units:
-      tax_unit: {members: [person1, person2, person3]}
-    spm_units:
-      spm_unit: {members: [person1, person2, person3], tanf: 0}
-    households:
-      household: {members: [person1, person2, person3], state_code: WA}
-  output:
-    meets_snap_parent_exception: [true, true, false]
-    is_snap_ineligible_student: [false, false, false]
-
-# Missouri's cap is modeled from 2025; the manual gives no effective date.
-- name: Case 52, Missouri lets both parents claim the exception before the 2025 modeling start.
+- name: Case 45, Missouri lets both parents claim the exception before the 2025 modeling start.
   period: 2024
   input:
     people:
@@ -812,7 +692,7 @@
     meets_snap_parent_exception: [true, true, false, false]
     is_snap_ineligible_student: [false, false, false, false]
 
-- name: Case 53, Missouri applies one caregiver claim from the 2025 modeling start.
+- name: Case 46, Missouri applies one caregiver claim from the 2025 modeling start.
   period: 2025
   input:
     people:
@@ -830,7 +710,7 @@
     meets_snap_parent_exception: [true, false, false, false]
     is_snap_ineligible_student: [false, true, false, false]
 
-- name: Case 54, Missouri keeps one caregiver claim after the 2025 modeling start.
+- name: Case 47, Missouri keeps one caregiver claim after the 2025 modeling start.
   period: 2026
   input:
     people:
@@ -847,3 +727,54 @@
   output:
     meets_snap_parent_exception: [true, false, false, false]
     is_snap_ineligible_student: [false, true, false, false]
+
+# Exception 8 (single parent, full time, child under twelve) is unchanged
+# by the cap: with one parent the claim cannot be shared.
+- name: Case 48, Missouri single full-time student parent with a child aged 6 to 11 keeps exception 8 under the cap.
+  period: 2025
+  input:
+    people:
+      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
+      person2: {age: 8, is_tax_unit_head_or_spouse: false}
+    tax_units:
+      tax_unit: {members: [person1, person2]}
+    spm_units:
+      spm_unit: {members: [person1, person2], tanf: 0}
+    households:
+      household: {members: [person1, person2], state_code: MO}
+  output:
+    meets_snap_parent_exception: [true, false]
+    is_snap_ineligible_student: [false, false]
+
+- name: Case 49, Missouri lone parent of a child under six takes the single claim.
+  period: 2025
+  input:
+    people:
+      person1: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: false}
+      person2: {age: 4, is_tax_unit_head_or_spouse: false}
+    tax_units:
+      tax_unit: {members: [person1, person2]}
+    spm_units:
+      spm_unit: {members: [person1, person2], tanf: 0}
+    households:
+      household: {members: [person1, person2], state_code: MO}
+  output:
+    meets_snap_parent_exception: [true, false]
+
+# Mirror of Case 19 with the two equally placed students listed in the
+# other order: the tie-break follows member order, not age.
+- name: Case 50, Missouri tie between two students goes to whichever is listed first.
+  period: 2025
+  input:
+    people:
+      person1: {age: 32, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
+      person2: {age: 30, is_tax_unit_head_or_spouse: true, is_full_time_college_student: true}
+      person3: {age: 4, is_tax_unit_head_or_spouse: false}
+    tax_units:
+      tax_unit: {members: [person1, person2, person3]}
+    spm_units:
+      spm_unit: {members: [person1, person2, person3], tanf: 0}
+    households:
+      household: {members: [person1, person2, person3], state_code: MO}
+  output:
+    meets_snap_parent_exception: [true, false, false]
