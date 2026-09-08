@@ -48,8 +48,9 @@
         state_code: MO
   output:
     # Mother only, SSI order (§ 0805.020.15 steps 4-6, no rounding shown):
-    # (4,000 - 20 - 65) / 2 = 1,957.50 x 12 = 23,490; less the one-parent
-    # allowance 994 x 12 = 11,928 -> 11,562. The stepfather's 120,000 is
+    # (4,000 - 20 - 65) / 2 = 1,957.50 x 12 = 23,490; less the parent living
+    # allowance (994 x 12 = 11,928, the one-person SSI federal benefit
+    # rate) -> 11,562. The stepfather's 120,000 is
     # not deemed.
     medicaid_optional_senior_or_disabled_unearned_income_deemed_from_ineligible_parent: [11_562, 0, 0]
 
@@ -81,6 +82,6 @@
         state_code: MO
   output:
     # Both parents: (6,250 - 20 - 65) / 2 = 3,082.50 x 12 = 36,990; less
-    # the two-parent allowance 1,491 x 12 = 17,892 -> 19,098, split
-    # equally -> 9,549 each.
+    # the parents' living allowance (1,491 x 12 = 17,892, the couple SSI
+    # federal benefit rate) -> 19,098, split equally -> 9,549 each.
     medicaid_optional_senior_or_disabled_unearned_income_deemed_from_ineligible_parent: [9_549, 9_549, 0, 0]

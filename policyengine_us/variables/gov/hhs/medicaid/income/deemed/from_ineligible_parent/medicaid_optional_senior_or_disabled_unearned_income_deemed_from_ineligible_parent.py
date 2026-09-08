@@ -85,7 +85,7 @@ class medicaid_optional_senior_or_disabled_unearned_income_deemed_from_ineligibl
         )
 
         count_eligible_children = tax_unit.sum(eligible_child)
-        income = np.zeros_like(count_eligible_children)
+        income = np.zeros_like(count_eligible_children, dtype=float)
         mask = count_eligible_children > 0
         income[mask] = net_parental_deemed_income[mask] / count_eligible_children[mask]
         return income

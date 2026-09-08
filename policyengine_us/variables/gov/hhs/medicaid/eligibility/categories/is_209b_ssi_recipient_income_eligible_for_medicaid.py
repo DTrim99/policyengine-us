@@ -32,6 +32,8 @@ class is_209b_ssi_recipient_income_eligible_for_medicaid(Variable):
             personal_income - medical_expenses
         )
 
+        # The limit is per person (Missouri's blind standard can differ
+        # within a couple) while the income is the couple's combined total.
         income_limit = person(
             "medicaid_optional_senior_or_disabled_income_limit", period
         )

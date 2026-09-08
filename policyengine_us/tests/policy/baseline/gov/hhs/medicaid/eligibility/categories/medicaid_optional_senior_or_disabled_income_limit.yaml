@@ -69,7 +69,10 @@
 # Appendix J standards effective 04-01-2026: $1,131 and $1,533 monthly
 # for aged or disabled, $1,330 and $1,804 for blind. These derive from
 # the 2026 poverty guidelines ($15,960 for one person plus $5,680 per
-# additional person), so no tax_unit_fpg override is set here.
+# additional person), so no tax_unit_fpg override is set here. Missouri
+# adopts each year's guideline on April 1; the model applies it from
+# January because gov.hhs.fpg is dated 2026-01-01, so a 2026 period
+# already resolves to these amounts.
 - name: Missouri aged single person gets the published 2026 dollar standard
   period: 2026
   input:

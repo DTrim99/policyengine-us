@@ -301,3 +301,30 @@
   output:
     # Each 13,500 is under the 13,572 individual standard.
     is_optional_senior_or_disabled_income_eligible: [true, true]
+
+# Each spouse is under the 13,572 individual standard, so only the couple
+# sum makes this ineligible; a per-person test would return [true, true].
+- name: Missouri couple each under the individual standard but over the couple standard combined is ineligible
+  period: 2026
+  input:
+    people:
+      person1:
+        age: 70
+        medicaid_optional_senior_or_disabled_countable_income: 9_300
+      person2:
+        age: 68
+        medicaid_optional_senior_or_disabled_countable_income: 9_300
+    tax_units:
+      tax_unit:
+        members: [person1, person2]
+        tax_unit_is_joint: true
+    marital_units:
+      marital_unit:
+        members: [person1, person2]
+    households:
+      household:
+        members: [person1, person2]
+        state_code: MO
+  output:
+    # 18,600 combined exceeds the 18,396 couple standard.
+    is_optional_senior_or_disabled_income_eligible: [false, false]
