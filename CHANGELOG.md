@@ -1,3 +1,10 @@
+## [1.824.2] - 2026-09-08
+
+### Fixed
+
+- Model Missouri's SNAP student under-six caregiver exemption as limited to one adult per modeled SNAP household from 2025, prioritizing students without another exemption and preserving other states' existing behavior.
+
+
 ## [1.824.1] - 2026-09-08
 
 ### Fixed
