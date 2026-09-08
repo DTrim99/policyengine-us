@@ -1,3 +1,10 @@
+## [1.823.1] - 2026-09-08
+
+### Fixed
+
+- Update the program registry to match the code: CCDF now has a state implementation in all 50 states and DC (North Dakota and South Dakota move from in progress to partial with their remaining gaps documented) while the program stays partial because New York's payment differentials and other listed gaps remain unmodeled, Texas CEAP is partial with its SSI categorical-eligibility gap documented and Hawaii OSS is complete, both with their variables and parameter prefixes, and the state universal school meals entries carry an explicit status.
+
+
 ## [1.823.0] - 2026-09-07
 
 ### Removed
