@@ -1,0 +1,1 @@
+Update the program registry to match the code: CCDF is complete across all 50 states and DC (North Dakota and South Dakota were still marked in progress), Texas CEAP and Hawaii OSS are complete with their variables and parameter prefixes, and the state universal school meals entries carry an explicit status.
