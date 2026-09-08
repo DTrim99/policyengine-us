@@ -468,8 +468,9 @@ programs:
     full_name: Child Care and Development Fund
     category: Benefits
     agency: HHS
-    status: complete
+    status: partial
     coverage: US
+    notes: Every state and DC has a child care subsidy implementation; the program stays partial while New York's listed gaps remain
     state_implementations:
       - state: AK
         status: complete
