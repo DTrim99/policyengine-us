@@ -3,7 +3,7 @@
   input:
     tax_unit_is_joint: true
     adjusted_gross_income: 50_459
-    il_property_tax_credit: 71.60
+    il_property_tax_credit_potential: 71.60
     state_code: IL
   output:
     il_property_tax_rebate: 71.60
@@ -13,7 +13,7 @@
   input:
     tax_unit_is_joint: true
     adjusted_gross_income: 60_000
-    il_property_tax_credit: 450
+    il_property_tax_credit_potential: 450
     state_code: IL
   output:
     il_property_tax_rebate: 300
@@ -23,7 +23,7 @@
   input:
     tax_unit_is_joint: true
     adjusted_gross_income: 500_001
-    il_property_tax_credit: 200
+    il_property_tax_credit_potential: 200
     state_code: IL
   output:
     il_property_tax_rebate: 0
@@ -33,7 +33,7 @@
   input:
     tax_unit_is_joint: false
     adjusted_gross_income: 250_001
-    il_property_tax_credit: 200
+    il_property_tax_credit_potential: 200
     state_code: IL
   output:
     il_property_tax_rebate: 0
@@ -43,7 +43,7 @@
   input:
     tax_unit_is_joint: false
     adjusted_gross_income: 250_000
-    il_property_tax_credit: 120
+    il_property_tax_credit_potential: 120
     state_code: IL
   output:
     il_property_tax_rebate: 120
